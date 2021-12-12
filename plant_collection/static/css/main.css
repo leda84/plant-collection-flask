@@ -1,3 +1,4 @@
+/* BASE.HTML */
 /* Nav Styles */
 .ct-nav{
     display : flex;
@@ -25,3 +26,24 @@ ul#horizontal-list a:nth-last-child(1){
     margin-right: 0.2vw;
 }
 /* End of Nav Styles */
+
+/* INDEX.HTML */
+/* Hero Image */
+#header-hero-img{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../images/index-header.jpg");
+    height: 80%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 5%;
+    text-align: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+#header-hero-text{
+    padding-top: 20%;
+}
