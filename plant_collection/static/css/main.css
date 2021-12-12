@@ -1,0 +1,27 @@
+/* Nav Styles */
+.ct-nav{
+    display : flex;
+    justify-content: space-between;
+}
+.ct-nav img{
+    width: 15%;
+    max-width: 100%;
+    margin-left: 2vw;
+}
+ul#horizontal-list{
+    min-width: 696px;
+    list-style: none;
+    padding: 20px;
+}
+ul#horizontal-list li, ul#horizontal-list a{
+    display: inline;
+    text-decoration: none;
+    padding: 0.5vw;
+    color: rgb(51, 90, 9)
+}
+ul#horizontal-list a:nth-last-child(1){
+    border: 2px solid rgb(51, 90, 9);
+    border-radius: 11px;
+    margin-right: 0.2vw;
+}
+/* End of Nav Styles */
