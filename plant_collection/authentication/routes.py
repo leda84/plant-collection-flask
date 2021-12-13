@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from werkzeug.security import check_password_hash
 from plant_collection.forms import UserLoginForm, UserSignupForm
 from plant_collection.models import db, User
+from flask_login import login_user, logout_user, current_user, login_required
 
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
 
@@ -20,8 +22,9 @@ def signup():
             db.session.add(user)
             db.session.commit()
             
-            flash(f'You have successfully created a user account for {email}. \nWelcome to The Hero Project!', "user-created")
+            flash(f'You have successfully created a user account for {email}. \nWelcome to The Plant Collection!', "user-created")
             return redirect(url_for('site.home'))   #maybe change redirect to profile(maybe even pop up option to choose)
+                                            # will probably leave as redirect to home to allow user to explore
     except:
         raise Exception('Invalid Form Data: Please check your info...')
 
@@ -36,10 +39,22 @@ def signin():
             password = form.password.data
             print(email,password)
 
-            flash(f"You have successfully created a user account for {email}.", "user-created")
-            return redirect(url_for('site.profile'))
+            logged_user = User.query.filter(User.email==email.first())
+            if logged_user and check_password_hash(logged_user.password, password):
+                login_user(logged_user)
+                flash('You were successfully logged in!', 'auth-success')
+                return redirect(url_for('site.profile'))
+            else:
+                flash('Your Email/Password is incorrect', 'auth-failed')
+                return redirect(url_for('auth.signin'))
+
     except:
         raise Exception('Invalid Form Data: Please check your form...')
 
     return render_template('signin.html', form = form)
+
+@auth.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('site.home'))
 
