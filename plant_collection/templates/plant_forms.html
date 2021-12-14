@@ -1,0 +1,52 @@
+<!-- HTML produced by the flask form -->
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <fieldset id="name">
+            {{ form.name.label }}
+            {{ form.name(class="form-control", placeholder="Your plant's name is...") }}
+        </fieldset>
+
+        <fieldset id="room">
+            {{ form.room.label }}
+            {{ form.room(class="form-control", placeholder="Your plant will be in this room...") }}
+        </fieldset>
+    
+        <fieldset id="plant_type">
+            {{ form.plant_type.label }}
+            {{ form.plant_type(class="form-control", placeholder="Type of plant...") }}
+        </fieldset>
+
+        <!-- find a way to make this a drop down with a few options to pick from for grouping later -->
+        <fieldset id="light">
+            {{ form.light.label }}
+            {{ form.light(class="form-control", placeholder="Your plant needs this much light...") }}
+        </fieldset>
+        <fieldset id="description">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", placeholder="Describe your plant...") }}
+        </fieldset>
+        <fieldset id="water">
+            {{ form.water.label }}
+            {{ form.water(class="form-control", placeholder="Your plant needs this much water...") }}
+        </fieldset>
+        <fieldset id="fertilizer">
+            {{ form.fertilizer.label }}
+            {{ form.fertilizer(class="form-control", placeholder="Your plant's fertilizer info...") }}
+        </fieldset>
+        <fieldset id="humidity">
+            {{ form.humidity.label }}
+            {{ form.humidity(class="form-control", placeholder="Humidity level your plant needs...") }}
+        </fieldset>
+        <fieldset id="pests">
+            {{ form.pests.label }}
+            {{ form.pests(class="form-control", placeholder="Look out for these pests...") }}
+        </fieldset>
+        <fieldset id="fun_facts">
+            {{ form.fun_facts.label }}
+            {{ form.fun_facts(class="form-control", placeholder="Fun fact(s) about your plants are...") }}
+        </fieldset>
+        <!-- submit button area -->
+        {{ form.submit_button(class='btn btn-primary btn-block') }}
+    </div>
+</form>
