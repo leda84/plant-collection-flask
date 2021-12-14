@@ -3,16 +3,16 @@
 {% block content %}
 
 <header class = "hero-section">
-    <h3 class = "header-text">Welcome Plant Lover! 🌿</h3>
+    <h3 class = "header-text">Welcome Plant Lover: {{ current_user.email }}! 🌿</h3>
 </header>
 
 <div class="container">
-    <h3>
-        <ul class="list-group">
-            <li class="list-group-item"></li>
-            <li class="list-group-item"></li>
-        </ul>
-    </h3>
+    <h3>Here are your Profile details:</h3>
 </div>
+
+<ul class="list-group">
+    <li class="list-group-item">Email: {{ current_user.email }}</li>
+    <li class="list-group-item">Token: {{ current_user.token }}</li>
+</ul>
 
 {% endblock content %}

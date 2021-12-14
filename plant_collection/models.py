@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 login_manager = LoginManager()
-ma = Marshmallow
+ma = Marshmallow()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -72,12 +72,23 @@ class Plant(db.Model):
         self.plant_type = plant_type
         self.light = light
         self.description = description
-        self. water = water
+        self.water = water
         self.fertilizer = fertilizer
         self.humidity = humidity
         self.pests = pests
         self.fun_fact = fun_fact
         self.user_token = user_token
 
+    def set_id(self):
+        return secrets.token_urlsafe()
+
     def __repr__(self):
         return f'The following Plant has been added: {self.name}'
+
+
+class PlantSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'name', 'room', 'plant_type', 'light', 'description', 'water', 'fertilizer', 'humidity', 'pests', 'fun_fact']
+
+plant_schema = PlantSchema()
+plants_schema = PlantSchema(many=True)

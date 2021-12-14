@@ -39,7 +39,7 @@ def signin():
             password = form.password.data
             print(email,password)
 
-            logged_user = User.query.filter(User.email==email.first())
+            logged_user = User.query.filter(User.email==email).first()
             if logged_user and check_password_hash(logged_user.password, password):
                 login_user(logged_user)
                 flash('You were successfully logged in!', 'auth-success')
@@ -54,6 +54,7 @@ def signin():
     return render_template('signin.html', form = form)
 
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('site.home'))
