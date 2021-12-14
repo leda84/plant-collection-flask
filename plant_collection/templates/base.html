@@ -29,7 +29,7 @@
         
         
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('site.profile') }}">
+        <a href="{{ url_for('auth.get_myplants') }}">
           <li>My Plants</li>
         </a>
         

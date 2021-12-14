@@ -90,3 +90,17 @@ def create():
         raise Exception('Invalid Form Data: Please check your info...')
 
     return render_template('create.html', form = form)
+
+
+# Endpoint Route and Function to retrieve all plants
+# try adding methods to update and delete at this endpoint
+        # using the try/ if statement kinda like create function
+@auth.route('/myplants', methods=['GET'])
+@login_required
+def get_myplants():
+
+    return render_template('show_all.html')
+    # owner = current_user_token.token
+    # plants = Plant.query.filter_by(user_token = owner).all()
+    # response = plants_schema.dump(plants)
+    # return jsonify(response)
