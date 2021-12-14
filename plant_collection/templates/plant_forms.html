@@ -26,6 +26,8 @@
             {{ form.description.label }}
             {{ form.description(class="form-control", placeholder="Describe your plant...") }}
         </fieldset>
+
+        <!-- find a way to make this a drop down with a few options to pick from for grouping later -->
         <fieldset id="water">
             {{ form.water.label }}
             {{ form.water(class="form-control", placeholder="Your plant needs this much water...") }}
@@ -34,6 +36,8 @@
             {{ form.fertilizer.label }}
             {{ form.fertilizer(class="form-control", placeholder="Your plant's fertilizer info...") }}
         </fieldset>
+
+        <!-- find a way to make this a drop down with a few options to pick from for grouping later -->
         <fieldset id="humidity">
             {{ form.humidity.label }}
             {{ form.humidity(class="form-control", placeholder="Humidity level your plant needs...") }}
@@ -42,9 +46,9 @@
             {{ form.pests.label }}
             {{ form.pests(class="form-control", placeholder="Look out for these pests...") }}
         </fieldset>
-        <fieldset id="fun_facts">
-            {{ form.fun_facts.label }}
-            {{ form.fun_facts(class="form-control", placeholder="Fun fact(s) about your plants are...") }}
+        <fieldset id="fun_fact">
+            {{ form.fun_fact.label }}
+            {{ form.fun_fact(class="form-control", placeholder="Fun fact(s) about your plants are...") }}
         </fieldset>
         <!-- submit button area -->
         {{ form.submit_button(class='btn btn-primary btn-block') }}

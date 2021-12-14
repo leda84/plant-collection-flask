@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import check_password_hash
-from plant_collection.forms import UserLoginForm, UserSignupForm
-from plant_collection.models import db, User
+from plant_collection.forms import UserLoginForm, UserSignupForm, PlantForm
+from plant_collection.models import db, User, Plant
 from flask_login import login_user, logout_user, current_user, login_required
 
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
@@ -59,3 +59,34 @@ def logout():
     logout_user()
     return redirect(url_for('site.home'))
 
+@auth.route('/create', methods = ['GET', 'POST'])
+@login_required
+def create():
+    form = PlantForm()
+    try:
+        if request.method == 'POST' and form.validate_on_submit():
+            name = form.name.data
+            room = form.room.data
+            plant_type = form.plant_type.data
+            light = form.light.data
+            description = form.description.data
+            water = form.water.data
+            fertilizer = form.fertilizer.data
+            humidity = form.humidity.data
+            pests = form.pests.data
+            fun_fact = form.fun_fact.data
+            user_token = current_user.token
+
+            print(name, room, plant_type, light, description, water, fertilizer, humidity, pests, fun_fact)
+
+            # creating/adding character to database
+            plant = Plant(name, room, plant_type, light, description, water, fertilizer, humidity, pests, fun_fact, user_token)
+            db.session.add(plant)
+            db.session.commit()
+            
+            flash(f'You have successfully added {name} to your collection!', "plant-created")
+            return redirect(url_for('auth.create'))
+    except:
+        raise Exception('Invalid Form Data: Please check your info...')
+
+    return render_template('create.html', form = form)
