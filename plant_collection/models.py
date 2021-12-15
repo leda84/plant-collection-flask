@@ -53,7 +53,7 @@ class User(db.Model, UserMixin):
 
 class Plant(db.Model):
     id = db.Column(db.String, primary_key=True)
-    name = db.Column(db.String(100), nullable = False)
+    name = db.Column(db.String(100), nullable = False) #add note like *required in form that user sees
     room = db.Column(db.String(100), nullable = True)
     plant_type = db.Column(db.String(100), nullable = True)
     light = db.Column(db.String(100), nullable = True)

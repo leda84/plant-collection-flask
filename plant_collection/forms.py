@@ -27,3 +27,7 @@ class PlantForm(FlaskForm):
     pests = StringField('Pest Control:', validators=[DataRequired()])
     fun_fact = StringField('Fun Fact(s):', validators=[DataRequired()])
     submit_button = SubmitField()
+
+class DeleteForm(FlaskForm):
+    name = StringField('Name:', validators=[DataRequired()])
+    submit_button = SubmitField()

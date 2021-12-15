@@ -1,16 +1,11 @@
-{% extends 'base.html' %}
 
-{% block content %}
-<h1>My Plant Collection:</h1>
-{% include 'show_plants.html' %}
-
-<!-- <div class="container">
+<div class="container">
     
 
     <div>
-    <h3>Here are {{ current_user.plant[0].name }}'s details:</h3> 
+    <h3>{{ current_user.plant[0].name }}'s details:</h3> 
     <ul class="list-group">
-        <li class="list-group-item">Plant NickName: {{ current_user.plant[0].name }}</li>
+        <li class="list-group-item">Plant Nickname: {{ current_user.plant[0].name }}</li>
         <li class="list-group-item">Plant: {{ current_user.plant[0].name }}</li>
         <li class="list-group-item">Room: {{ current_user.plant[0].room }}</li>
         <li class="list-group-item">Plant Type: {{ current_user.plant[0].plant_type }}</li>
@@ -24,9 +19,9 @@
     </ul>
     </div>
     <div>
-    <h3>Here are {{ current_user.plant[1].name }}'s details:</h3> 
+    <h3>{{ current_user.plant[1].name }}'s details:</h3> 
     <ul class="list-group">
-        <li class="list-group-item">Plant NickName: {{ current_user.plant[1].name }}</li>
+        <li class="list-group-item">Plant Nickname: {{ current_user.plant[1].name }}</li>
         <li class="list-group-item">Plant: {{ current_user.plant[1].name }}</li>
         <li class="list-group-item">Room: {{ current_user.plant[1].room }}</li>
         <li class="list-group-item">Plant Type: {{ current_user.plant[1].plant_type }}</li>
@@ -40,6 +35,4 @@
     </ul>
     </div>
     
-</div> -->
-
-{% endblock content %}
+</div>
