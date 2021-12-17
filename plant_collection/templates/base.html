@@ -33,16 +33,12 @@
           <li>My Profile</li>
         </a>
         
-        <a href="{{ url_for('auth.get_myplants') }}">
+        <a href="{{ url_for('auth.show_plants') }}">
           <li>My Plants</li>
         </a>
         
-        <a href="{{ url_for('auth.create') }}">
+        <a href="{{ url_for('auth.new_plant') }}">
           <li>Add A Plant</li>
-        </a>
-
-        <a href="{{ url_for('auth.delete_plant') }}">
-          <li>Delete A Plant</li>
         </a>
 
         <a href = "{{ url_for('auth.logout') }}">
@@ -62,6 +58,24 @@
     </div>
   </nav>
 
+  <div class="container">
+
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+          
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            
+          <span> {{ msg }} </span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
   {% block content %}
   {% endblock content %}
 

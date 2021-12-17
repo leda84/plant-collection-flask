@@ -1,24 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for cat, msg in messages %}
-                {% if cat == 'user-created' %}
-                    <div class="alert alert-success">
-                        {{ msg }}
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
 
-<div class="container">
+<!-- <div class="container"> -->
     <!-- HEADER SECTION -->
-    <header class="row">
+    <!-- <header class="row"> -->
         <div class="col-12 col-md-6" id="header-hero-img">
             <div id="header-hero-text">
                 <h2>Collect plants, share your collection & connect with other plant lovers!</h2>
@@ -28,8 +14,9 @@
                 </div>
             </div>
         </div>
-    </header>
-
+    <!-- </header> -->
+<!-- </div> -->
+<!-- <div class="container"> -->
     <!-- MIDDLE SECTION -->
     <section class="row">
         <div class="col-12" id="middle-text">
@@ -38,7 +25,7 @@
             <p>Every time you bring a new plant friend home, add it to your collection. Organize the care and fun facts to all of your green buddies!</p>
         </div>
     </section>
-</div>
+<!-- </div> -->
 
 
 

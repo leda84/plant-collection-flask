@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import check_password_hash
-from plant_collection.forms import UserLoginForm, UserSignupForm, PlantForm, DeleteForm
+from plant_collection.forms import UserLoginForm, UserSignupForm, PlantForm
 from plant_collection.models import db, User, Plant
 from flask_login import login_user, logout_user, current_user, login_required
 from ..api.routes import delete_plant
@@ -23,9 +23,8 @@ def signup():
             db.session.add(user)
             db.session.commit()
             
-            flash(f'You have successfully created a user account for {email}. \nWelcome to The Plant Collection!', "user-created")
-            return redirect(url_for('site.home'))   #maybe change redirect to profile(maybe even pop up option to choose)
-                                            # will probably leave as redirect to home to allow user to explore
+            flash(f'You have successfully created a user account for {email}. \nWelcome to The Plant Collection!', "success")
+            return redirect(url_for('auth.signin'))
     except:
         raise Exception('Invalid Form Data: Please check your info...')
 
@@ -43,10 +42,10 @@ def signin():
             logged_user = User.query.filter(User.email==email).first()
             if logged_user and check_password_hash(logged_user.password, password):
                 login_user(logged_user)
-                flash('You were successfully logged in!', 'auth-success')
+                flash('You were successfully logged in!', 'success')
                 return redirect(url_for('site.profile'))
             else:
-                flash('Your Email/Password is incorrect', 'auth-failed')
+                flash('Your Email/Password is incorrect', 'danger')
                 return redirect(url_for('auth.signin'))
 
     except:
@@ -58,11 +57,13 @@ def signin():
 @login_required
 def logout():
     logout_user()
+    flash(f'You have successfully logged out!', "success")
+            
     return redirect(url_for('site.home'))
 
 @auth.route('/create', methods = ['GET', 'POST'])
 @login_required
-def create():
+def new_plant():
     form = PlantForm()
     try:
         if request.method == 'POST' and form.validate_on_submit():
@@ -85,12 +86,42 @@ def create():
             db.session.add(plant)
             db.session.commit()
             
-            flash(f'You have successfully added {name} to your collection!', "plant-created")
-            return redirect(url_for('auth.create'))
+            flash(f'You have successfully added "{name}" to your collection!', "success")
+            return redirect(url_for('auth.new_plant')) # maybe change redirect to show plants
     except:
         raise Exception('Invalid Form Data: Please check your info...')
 
     return render_template('create.html', form = form)
+
+
+@auth.route('/myplants')
+@login_required
+def show_plants(): 
+    return render_template('show_all.html')
+
+@auth.route('/plant/<plant_id>/update', methods = ['GET','POST'])
+@login_required
+def update_plant(plant_id):
+    plant = Plant.query.get_or_404(plant_id)
+    form = PlantForm()
+    if request.method == 'POST':
+        plant.name = request.form['name']
+        plant.room = request.form['room']
+        plant.plant_type = request.form['plant_type']
+        plant.light = request.form['light']
+        plant.description = request.form['description']
+        plant.water = request.form['water']
+        plant.fertilizer = request.form['fertilizer']
+        plant.humidity = request.form['humidity']
+        plant.pests = request.form['pests']
+        plant.fun_fact = request.form['fun_fact']
+
+        db.session.commit()
+        flash(f'Your plant "{plant.name}" has been updated!', "success")
+        return redirect(url_for('auth.show_plants'))
+    return render_template('update_plant.html', plant=plant, form=form)
+
+
 
     # TEST DELETE ROUTE******************************* this kinda worked
 # @auth.route('/delete', methods = ['GET', 'POST'])
@@ -138,27 +169,27 @@ def create():
 
 #     return render_template('delete_plant.html', form=form)
 
-
-@auth.route('/delete', methods = ['GET', 'POST'])
-@login_required
-def delete_plant(name):
-    form = DeleteForm()
-    plant = Plant.query.get(name)
-    try:
-        if request.method == 'POST':
-            name = form.name.data
-            #plant = Plant.query.filter_by(name=name).first_or_404()
+# *****************LAST USED**************
+# @auth.route('/delete', methods = ['GET', 'POST'])
+# @login_required
+# def delete_plant(name):
+#     form = DeleteForm()
+#     plant = Plant.query.get(name)
+#     try:
+#         if request.method == 'POST':
+#             name = form.name.data
+#             #plant = Plant.query.filter_by(name=name).first_or_404()
     
-            # if form.delete.data:
-            #     return redirect(url_for('servers.delete', id=id))
+#             # if form.delete.data:
+#             #     return redirect(url_for('servers.delete', id=id))
 
-            if form.validate_on_submit():
-                delete_plant()
-                flash('Your changes have been saved.')
-    except:
-         raise Exception('Invalid Form Data: Please check your info...')
+#             if form.validate_on_submit():
+#                 delete_plant()
+#                 flash('Your changes have been saved.')
+#     except:
+#          raise Exception('Invalid Form Data: Please check your info...')
 
-    return render_template('delete_plant.html', form=form)
+#     return render_template('delete_plant.html', form=form)
 
 
 
@@ -187,13 +218,4 @@ def delete_plant(name):
 # Endpoint Route and Function to retrieve all plants
 # try adding methods to update and delete at this endpoint
         # using the try/ if statement kinda like create function
-@auth.route('/myplants', methods=['GET'])
-@login_required
-def get_myplants():
-    # if request.method == 'GET':
-    #     owner = current_user.token
-    #     plant = Plant.query.filter_by(user_token = owner).first()
-    #     return plant
-
-    return render_template('show_all.html')
    

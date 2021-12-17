@@ -2,12 +2,13 @@
 
 {% block content %}
 
-<h1>Add a Plant to Your Collection Here 🌵</h1>
+<h1>Update a {{plant.name}} Here 🌵</h1>
 <main class="container">
     <div class="row">
         <aside class="col-12 col-md-6">
-            <h3>Fill out form to add a new plant buddy to your Collection</h3>
-            {% include 'plant_forms.html' %}
+            <h3>Fill out form to update a plant</h3>
+            <h6>*must fill out all fields*</h6>
+            {% include 'update_forms.html' %}
         </aside>
     </div>
 </main>

@@ -1,0 +1,56 @@
+<!-- HTML produced by the flask form -->
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <fieldset id="name">
+            {{ form.name.label }}
+            {{ form.name(class="form-control", placeholder="Update nickname...") }}
+        </fieldset>
+
+        <fieldset id="room">
+            {{ form.room.label }}
+            {{ form.room(class="form-control", placeholder="Update room...") }}
+        </fieldset>
+    
+        <fieldset id="plant_type">
+            {{ form.plant_type.label }}
+            {{ form.plant_type(class="form-control", placeholder="Update type of plant...") }}
+        </fieldset>
+
+        <!-- find a way to make this a drop down with a few options to pick from for grouping later -->
+        <fieldset id="light">
+            {{ form.light.label }}
+            {{ form.light(class="form-control", placeholder="Update light...") }}
+        </fieldset>
+        <fieldset id="description">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", placeholder="Update description...") }}
+        </fieldset>
+
+        <!-- find a way to make this a drop down with a few options to pick from for grouping later -->
+        <fieldset id="water">
+            {{ form.water.label }}
+            {{ form.water(class="form-control", placeholder="Update water...") }}
+        </fieldset>
+        <fieldset id="fertilizer">
+            {{ form.fertilizer.label }}
+            {{ form.fertilizer(class="form-control", placeholder="Update fertilizer info...") }}
+        </fieldset>
+
+        <!-- find a way to make this a drop down with a few options to pick from for grouping later -->
+        <fieldset id="humidity">
+            {{ form.humidity.label }}
+            {{ form.humidity(class="form-control", placeholder="Update humidity level...") }}
+        </fieldset>
+        <fieldset id="pests">
+            {{ form.pests.label }}
+            {{ form.pests(class="form-control", placeholder="Update pests...") }}
+        </fieldset>
+        <fieldset id="fun_fact">
+            {{ form.fun_fact.label }}
+            {{ form.fun_fact(class="form-control", placeholder="Update fun fact(s)...") }}
+        </fieldset>
+        <!-- submit button area -->
+        {{ form.submit_button(class='btn btn-primary btn-block') }}
+    </div>
+</form>

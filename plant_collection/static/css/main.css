@@ -3,7 +3,8 @@
 .ct-nav{
     display : flex;
     justify-content: space-between;
-    margin-bottom: 110px;
+    /* margin-bottom: 10px; */
+    /* took out to fix flash messages */
 }
 .ct-nav img{
     width: 75px;
@@ -39,7 +40,7 @@ ul#horizontal-list a:nth-last-child(1){
     margin-top: auto;
     text-align: center;
     position: relative;
-    
+    margin-top: 25vh;
     left: 50%;
     transform: translate(-50%, -50%);
     
