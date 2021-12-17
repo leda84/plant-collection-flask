@@ -117,11 +117,21 @@ def update_plant(plant_id):
         plant.fun_fact = request.form['fun_fact']
 
         db.session.commit()
-        flash(f'Your plant "{plant.name}" has been updated!', "success")
+        flash(f"Your plant '{plant.name}' has been updated!", "success")
         return redirect(url_for('auth.show_plants'))
     return render_template('update_plant.html', plant=plant, form=form)
 
 
+@auth.route('/plant/<plant_id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_plant(plant_id):
+    plant = Plant.query.get_or_404(plant_id)
+    db.session.delete(plant)
+    db.session.commit()
+    # add flash
+    flash(f"You have successfully deleted '{plant.name}'!", "warning")
+    return redirect(url_for('auth.show_plants'))
+    
 
     # TEST DELETE ROUTE******************************* this kinda worked
 # @auth.route('/delete', methods = ['GET', 'POST'])
