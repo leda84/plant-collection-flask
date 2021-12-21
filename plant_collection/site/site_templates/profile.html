@@ -3,18 +3,19 @@
 {% block content %}
 
             <!-- TODO: center this too and make it look like nice header -->
-<header class = "hero-section">
-    <h3 class = "header-text">Welcome Plant Lover: {{ current_user.email }}! 🌿</h3>
+<header class = "hero-section" id="profile-header">
+    <h3 class = "header-text">Welcome Plant Lover: {{ current_user.first_name }}! 🌿</h3>
 </header>
 
 <!-- TODO: style this container(centered, with gradient colors) -->
-<div class="container">
+<div class="container" id="profile-container">
     <h3>Here are your Profile details:</h3>
 
 
 <ul class="list-group">
+    <li class="list-group-item">First Name: {{ current_user.first_name }}</li>
     <li class="list-group-item">Email: {{ current_user.email }}</li>
-    <li class="list-group-item">Token: {{ current_user.token }}</li>
+    <li class="list-group-item">User Since: {{ current_user.date_created }}</li>
 </ul>
 </div>
 {% endblock content %}

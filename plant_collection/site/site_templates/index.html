@@ -1,32 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<body>
+    
 
-<!-- <div class="container"> -->
-    <!-- HEADER SECTION -->
-    <!-- <header class="row"> -->
-        <div class="col-12 col-md-6" id="header-hero-img">
-            <div id="header-hero-text">
-                <h2>Collect plants, share your collection & connect with other plant lovers!</h2>
-                <h5>Keep your plants alive longer by organizing their care here.</h5>
-                <div>
-                    <button class="btn btn-primary">edit button</button>
-                </div>
-            </div>
+<!-- HEADER SECTION -->
+<div class="col-12 col-md-6" id="header-hero-img">
+    <div id="header-hero-text">
+        <h2>Collect plants, share your collection & connect with other plant lovers!</h2>
+        <h5>Keep your plants thriving longer by organizing their care here.</h5>
+        <div>
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-success" role="button" id="start">Start Collection!</a>
         </div>
-    <!-- </header> -->
-<!-- </div> -->
-<!-- <div class="container"> -->
-    <!-- MIDDLE SECTION -->
-    <section class="row">
-        <div class="col-12" id="middle-text">
-            <!-- Make a chat page and connect using this button -->
-            <h2>Share your Collection!</h2>
-            <p>Every time you bring a new plant friend home, add it to your collection. Organize the care and fun facts to all of your green buddies!</p>
-        </div>
-    </section>
-<!-- </div> -->
+    </div>
+</div>
 
+<!-- MIDDLE SECTION -->
+<section class="row">
+    <div class="col-12" id="middle-text">
+        <h2>Grow Your Collection!</h2>
+        <p>Every time you bring a new plant friend home, add it to your collection. Organize the care and fun facts to all of your green buddies!</p>
+    </div>
+</section>
+<section class="row">
+    <div class="col-12" id="middle-text">
+        <h2>Connect with the Community!</h2>
+        <p>COMING SOON! The chance to message fellow plant lovers!</p>
+    </div>
+</section>
+</body>
 
 
 {% endblock content %}

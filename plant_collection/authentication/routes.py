@@ -23,7 +23,7 @@ def signup():
             db.session.add(user)
             db.session.commit()
             
-            flash(f'You have successfully created a user account for {email}. \nWelcome to The Plant Collection!', "success")
+            flash(f'Success! You have created a user account for {email}. \nWelcome to The Plant Collection!', "success")
             return redirect(url_for('auth.signin'))
     except:
         raise Exception('Invalid Form Data: Please check your info...')
@@ -45,7 +45,7 @@ def signin():
                 flash('You were successfully logged in!', 'success')
                 return redirect(url_for('site.profile'))
             else:
-                flash('Your Email/Password is incorrect', 'danger')
+                flash('ERROR! Your Email/Password is incorrect.', 'danger')
                 return redirect(url_for('auth.signin'))
 
     except:
@@ -86,7 +86,7 @@ def new_plant():
             db.session.add(plant)
             db.session.commit()
             
-            flash(f'You have successfully added "{name}" to your collection!', "success")
+            flash(f'Success! You have added "{name}" to your collection!', "success")
             return redirect(url_for('auth.new_plant')) # maybe change redirect to show plants
     except:
         raise Exception('Invalid Form Data: Please check your info...')
@@ -117,7 +117,7 @@ def update_plant(plant_id):
         plant.fun_fact = request.form['fun_fact']
 
         db.session.commit()
-        flash(f"Your plant '{plant.name}' has been updated!", "success")
+        flash(f" Success! Your plant '{plant.name}' has been updated.", "success")
         return redirect(url_for('auth.show_plants'))
     return render_template('update_plant.html', plant=plant, form=form)
 
@@ -129,7 +129,7 @@ def delete_plant(plant_id):
     db.session.delete(plant)
     db.session.commit()
     # add flash
-    flash(f"You have successfully deleted '{plant.name}'!", "warning")
+    flash(f"Success! You have deleted '{plant.name}'.", "warning")
     return redirect(url_for('auth.show_plants'))
     
 

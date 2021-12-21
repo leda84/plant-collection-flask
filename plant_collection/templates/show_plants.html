@@ -18,10 +18,10 @@
         <li class="list-group-item">Fun Fact: {{ plant.fun_fact }}</li>
     </ul>
     <span>
-        <a href="{{ url_for('auth.update_plant', plant_id=plant.id) }}" class="btn btn-outline-primary" role="button">
+        <a href="{{ url_for('auth.update_plant', plant_id=plant.id) }}" class="btn btn-outline-success" role="button">
         Update
         </a>
-        <a href="{{ url_for('auth.delete_plant', plant_id=plant.id) }}" class="btn btn-outline-primary" role="button" onclick="return confirm('Are you sure you want to delete this plant?')">
+        <a href="{{ url_for('auth.delete_plant', plant_id=plant.id) }}" class="btn btn-outline-danger" role="button" onclick="return confirm('Are you sure you want to delete this plant?')">
         Delete
         </a>
     </span>

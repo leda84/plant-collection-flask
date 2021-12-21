@@ -2,14 +2,18 @@
 
 {% block content %}
 
-<h1>Sign Up Here 🌵</h1>
-<main class="container">
-    <div class="row">
-        <aside class="col-12 col-md-6">
-            <h2>Create Your Free Account</h2>
-            {% include 'signup_forms.html' %}
-        </aside>
-    </div>
-</main>
+<div class="col-12 col-md-6" id="signup-hero-img">
+    <main class="container" id="main-signup">
+        <div id="signup-hero-text">
+            <h1>Sign Up Here 🍃</h1>
+        </div>
+        <div class="row">
+            <aside class="col-12 col-md-6">
+                <h2>Create Your Free Account</h2>
+                {% include 'signup_forms.html' %}
+            </aside>
+        </div>
+    </main>
+</div>
 
 {% endblock content %}
